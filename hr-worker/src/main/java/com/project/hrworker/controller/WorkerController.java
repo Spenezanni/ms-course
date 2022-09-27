@@ -22,21 +22,16 @@ public class WorkerController {
 	
 	@GetMapping(value = "list-all")
 	public ResponseEntity<List<Worker>> findAll() {
-		
 		List<Worker> list = workerService.findAll();
-	
-	return ResponseEntity.ok(list);
+		return ResponseEntity.ok(list);
 	
 	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Worker> findWorkerById(@PathVariable Long id) {
-		
 		Worker worker = workerService.findWorkerById(id);
-	
 		return new ResponseEntity<>(worker, HttpStatus.OK);
 	
 	}
-	
 	
 }
