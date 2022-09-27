@@ -24,7 +24,7 @@ public class WorkerServiceImpl implements WorkerService {
 	}
 
 	@Override
-	public Worker findWorkerBytId(Long id) {
+	public Worker findWorkerById(Long id) {
 		Optional<Worker> worker = workerRepository.findById(id);
 		return worker.get();
 	}

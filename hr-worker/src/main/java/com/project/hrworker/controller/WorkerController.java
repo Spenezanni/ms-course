@@ -1,8 +1,9 @@
-package com.project.hrworker.resources;
+package com.project.hrworker.controller;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,13 +15,13 @@ import com.project.hrworker.services.WorkerService;
 
 @RestController
 @RequestMapping(value= "/workers")
-public class WorkerResource {
+public class WorkerController {
 	
 	@Autowired
 	private WorkerService workerService;
 	
-	@GetMapping("list-all")
-	public ResponseEntity<List<Worker>> findAll(){
+	@GetMapping(value = "list-all")
+	public ResponseEntity<List<Worker>> findAll() {
 		
 		List<Worker> list = workerService.findAll();
 	
@@ -28,12 +29,14 @@ public class WorkerResource {
 	
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<Worker> findWorker(@PathVariable Long id){
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Worker> findWorkerById(@PathVariable Long id) {
 		
-	 Worker worker = workerService.findWorkerBytId(id);
+		Worker worker = workerService.findWorkerById(id);
 	
-	return ResponseEntity.ok(worker);
+		return new ResponseEntity<>(worker, HttpStatus.OK);
 	
 	}
+	
+	
 }

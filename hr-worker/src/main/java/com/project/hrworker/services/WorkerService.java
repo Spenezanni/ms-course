@@ -8,6 +8,6 @@ public interface WorkerService {
 	
   List<Worker> findAll();
   
-  Worker findWorkerBytId(Long id);
+  Worker findWorkerById(Long id);
 	
 }
