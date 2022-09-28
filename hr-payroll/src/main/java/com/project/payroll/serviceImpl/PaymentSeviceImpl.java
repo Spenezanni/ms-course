@@ -12,20 +12,24 @@ import com.project.payroll.entities.Payment;
 import com.project.payroll.entities.Worker;
 import com.project.payroll.service.PaymentService;
 
+import feignClients.WorkerFeignClient;
+
 @Service
 public class PaymentSeviceImpl implements PaymentService {
 	
-	@Value("${hr-worker.host}")
-	private String workerHost;
+//	@Value("${hr-worker.host}")
+//	private String workerHost;
 	
 	@Autowired
-	private RestTemplate restTemplate;
+	private WorkerFeignClient workerFeignClient;
 
 	@Override
 	public Payment getPayment(long workerId, int days) {
-		Map<String, String> uriVariables = new HashMap<>();
-		uriVariables.put("id", ""+workerId);
-		Worker worker = restTemplate.getForObject(workerHost + "/workers/{id}", Worker.class, uriVariables);
+		
+		Worker worker = workerFeignClient.findWorkerById(workerId).getBody();
+//		Map<String, String> uriVariables = new HashMap<>();
+//		uriVariables.put("id", ""+workerId);
+//		Worker worker = restTemplate.getForObject(workerHost + "/workers/{id}", Worker.class, uriVariables);
 		return new Payment(worker.getName(), worker.getDailyIncome(), days);
 	}
 
