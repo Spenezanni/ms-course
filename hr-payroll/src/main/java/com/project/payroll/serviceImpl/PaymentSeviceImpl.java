@@ -10,9 +10,8 @@ import org.springframework.web.client.RestTemplate;
 
 import com.project.payroll.entities.Payment;
 import com.project.payroll.entities.Worker;
+import com.project.payroll.feignClients.WorkerFeignClient;
 import com.project.payroll.service.PaymentService;
-
-import feignClients.WorkerFeignClient;
 
 @Service
 public class PaymentSeviceImpl implements PaymentService {
