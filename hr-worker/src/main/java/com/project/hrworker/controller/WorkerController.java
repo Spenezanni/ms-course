@@ -19,32 +19,31 @@ import com.project.hrworker.services.WorkerService;
 
 @RefreshScope
 @RestController
-@RequestMapping(value= "/workers")
+@RequestMapping(value = "/workers")
 public class WorkerController {
-	
+
 	private static Logger logger = org.slf4j.LoggerFactory.getLogger(WorkerController.class);
-	
+//
 //	@Value("${test.config}")
 //	private String testConfig;
-//	
-	
+
 	@Autowired
 	private Environment env;
-	
+
 	@Autowired
 	private WorkerService workerService;
-	
-	@GetMapping(value = "list-all")
+
+	@GetMapping(value = "/list-all")
 	public ResponseEntity<List<Worker>> findAll() {
 		List<Worker> list = workerService.findAll();
 		return ResponseEntity.ok(list);
-	
+
 	}
-	
+
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Worker> findWorkerById(@PathVariable Long id) {
-		
-//	try {
+
+//		try {
 //			Thread.sleep(3000L);
 //		} catch (InterruptedException e) {
 //			e.printStackTrace();
@@ -52,15 +51,14 @@ public class WorkerController {
 		logger.info("PORT = " + env.getProperty("local.server.port"));
 		Worker worker = workerService.findWorkerById(id);
 		return new ResponseEntity<>(worker, HttpStatus.OK);
-	
+
 	}
-	
-//
-//	@GetMapping(value = "/configs")
-//	public ResponseEntity<Void> getConfigs() {
-//		logger.info("CONFIG = " + testConfig );
-//		return ResponseEntity.noContent().build();
-//	
-//	}
-	
+
+	@GetMapping(value = "/configs")
+	public ResponseEntity<Void> getConfigs() {
+//		logger.info("CONFIG = " + testConfig);
+		return ResponseEntity.noContent().build();
+
+	}
+
 }
