@@ -4,11 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.project.hrworker.domain.dto.Worker1Dto;
-import com.project.hrworker.domain.entities.Worker;
 
 @Repository
-public interface WorkerRepository extends JpaRepository<Worker, Long>{
-
-	void save(Worker1Dto worker1Dto);
+public interface Worker1Repository extends JpaRepository<Worker1Dto, Long>{
 
 }

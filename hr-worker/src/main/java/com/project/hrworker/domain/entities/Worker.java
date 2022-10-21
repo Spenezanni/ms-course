@@ -1,4 +1,4 @@
-package com.project.hrworker.entities;
+package com.project.hrworker.domain.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
