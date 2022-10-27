@@ -74,7 +74,8 @@ public class WorkerController {
 	
 	@PostMapping
 	public ResponseEntity<String> salvarWorker1(@RequestBody Worker1 worker1) {
-		workerService.salvarWorker1(workerMapper.worker1ToWorker1Dto(worker1));
+		Worker1Dto worker1Dto = workerMapper.worker1ToWorker1Dto(worker1);
+		workerService.salvarWorker1(worker1Dto);
 		return new ResponseEntity<>("Salvo com Sucesso", HttpStatus.OK);
 	}
 	
